@@ -1,7 +1,7 @@
 <?php
 
 //llamar a la carpte model archivo.
-require_once(__DIR__ . "/../models/TaskModel.php");
+require_once(__DIR__ . "/../models/ModelTask.php");
 
 /**
  * Base controller for the application.
@@ -14,4 +14,10 @@ require_once(__DIR__ . "/../models/TaskModel.php");
 class ApplicationController extends Controller 
 {
 	
+    private $modelTask;
+
+    public function __construct(){
+
+        $this->modelTask = new ModelTask();
+    }
 }
