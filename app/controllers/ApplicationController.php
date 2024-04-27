@@ -21,7 +21,7 @@ class ApplicationController extends Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) { //verifica si se ha enviado la solicitud
             $this->modelTask->deleteTask($id); //elimina la task;
-            header("Location: " . $this->_baseUrl());
+            header("Location: " . $this->_baseUrl()); //por definir la ruta.
             exit();
         }
     }
