@@ -27,5 +27,18 @@ class ModelTask extends Model
 // declarar method ver task.
 // declarar method editar task.
 // declarar method eliminar task.
+    function deleteTask(int $id) 
+    {
+        $allList = $this->allTask();
+
+        foreach ($allList as $index => $task) {
+            if ($id === $task["id"]) {
+                unset($allList[$index]); //se elimina la task utilizando el unset.
+            }
+        }
+        $tasks = array_values($allList); //Reorganiza los elementos del array
+        $jsonFile = json_encode($tasks, JSON_PRETTY_PRINT); //decodifica el archivo php a json
+        file_put_contents(ROOT_PATH . '/app/models/db.json' , $jsonFile); //guarda los cambios en la bd.
+    }
 }
 ?>
