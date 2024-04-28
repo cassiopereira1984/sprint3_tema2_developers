@@ -6,5 +6,17 @@
  */
 class ApplicationController extends Controller 
 {
-	
+	private $modelTask;
+
+    public function __construct(){
+
+        $this->modelTask = new ModelTask();
+    }
+
+    public function readTask(){
+        $task = new ModelTask();
+        $id = $_GET["id"]; 
+        $oneTask = $task -> readTask($id);
+        $this -> view -> oneTask = $oneTask;
+    }
 }
