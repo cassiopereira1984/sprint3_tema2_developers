@@ -6,5 +6,17 @@
  */
 class ApplicationController extends Controller 
 {
-	
+	private $modelTask;
+
+    public function __construct(){
+
+        $this->modelTask = new ModelTask();
+    }
+
+    public function indexAction(){
+        $task = new ModelTask;
+        $data = $task -> allTask();
+        var_dump($data);
+        $this -> view -> data = $data;
+    }
 }

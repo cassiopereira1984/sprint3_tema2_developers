@@ -1,0 +1,15 @@
+{
+    "name": "davin/sprint3_tema2_developers",
+    "autoload": {
+        "psr-4": {
+            "Davin\\Sprint3Tema2Developers\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MaikGare",
+            "email": "maik.fusrodah@gmail.com"
+        }
+    ],
+    "require": {}
+}
