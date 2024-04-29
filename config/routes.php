@@ -11,5 +11,5 @@
  */
 $routes = array(
 	'/test' => 'test#index',
-	'/delete => Application#delete'
+	'/delete' => 'Application#delete'
 );
