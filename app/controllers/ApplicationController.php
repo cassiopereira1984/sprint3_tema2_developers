@@ -21,6 +21,14 @@ class ApplicationController extends Controller
         $this->modelTask = new ModelTask();
     }
 
+    public function indexAction()
+    {
+
+        $this->modelTask->allTask();
+        $tasks = $this->modelTask->allTask();
+        $this->view->allTask = $tasks;
+
+    }
     public function createTaskAction()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {/*$_SERVER['REQUEST_METHOD']: El método de solicitud HTTP utilizado 
