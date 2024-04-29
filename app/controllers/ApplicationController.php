@@ -13,7 +13,7 @@ class ApplicationController extends Controller
         $this->modelTask = new ModelTask();
     }
 
-    public function readTask(){
+    public function readTaskAction(){
         $task = new ModelTask();
         $id = $_GET["id"]; 
         $oneTask = $task -> readTask($id);
