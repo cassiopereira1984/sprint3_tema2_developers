@@ -34,7 +34,7 @@ class ApplicationController extends Controller
 
 
             $newTask = [
-                'id' => $this->modelTask->getID(),//hay que crear el metodo getID en ModelTask.php
+                'id' => $this->modelTask->newId(),//hay que crear el metodo getID en ModelTask.php
                 'description' => $description,
                 'status' => $status,
                 'date_ini' => $dateIni,

@@ -24,10 +24,10 @@ class ModelTask extends Model
     }
 // declarar method incremente el id.. (o lo podem incrementar al crear la task, o incrementar x un metodo).
 // declarar method crear task.
-    function createTask() //puedes recibir las info o implementarlas desde de el method.
+    function createTask(array $newTask) //puedes recibir las info o implementarlas desde de el method.
     {
-        $data = $this->allTask(); //llamas el method
-        $var1 = json_encode(/*$this->tasks*/, JSON_PRETTY_PRINT); //vuelver a convirter datos de php a json
+        $task[] = $newTask;
+        $var1 = json_encode($task, JSON_PRETTY_PRINT); //vuelver a convirter datos de php a json
         file_put_contents($this->dbJson, $var1); //añandi los datos al THIS con el file_put_contents
     }
 
