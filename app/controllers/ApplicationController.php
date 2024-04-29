@@ -30,7 +30,7 @@ class ApplicationController extends Controller
             $status = $this->$_POST("status");
             $dateIni = date_create()->format('Y-m-d');
             $dateEnd = date_create($_POST["date_end"])->format('Y-m-d');
-            $user = $this->$_POST("user");
+            $user = $this->$_POST("user");// Tener en cuenta cambiar "()" por "[]"
 
 
             $newTask = [
