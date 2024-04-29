@@ -23,13 +23,14 @@ class ApplicationController extends Controller
 
     public function createTaskAction()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {/*$_SERVER['REQUEST_METHOD']: El método de solicitud HTTP utilizado 
+                                                    (por ejemplo, GET, POST, etc.).*/
             //recoger los datos introducidos en formulario de nueva tarea
-            $description = $this->_getParam("description");
-            $status = $this->_getParam("status");
+            $description = $this->$_POST("description");
+            $status = $this->$_POST("status");
             $dateIni = date_create()->format('Y-m-d');
             $dateEnd = date_create($_POST["date_end"])->format('Y-m-d');
-            $user = $this->_getParam("user");
+            $user = $this->$_POST("user");
 
 
             $newTask = [
