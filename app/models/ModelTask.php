@@ -5,11 +5,13 @@ class ModelTask extends Model
 {
 // declarar variables.
     protected $dbJson;
+    static $newId;
 
 // declarar el construct.
-    function __contruct() 
+    function __contruct($newId) 
     {
         $this->dbJson = __DIR__ . "/db.json";
+        $this->newId = $newId;
     }
 
 // declarar un array que converta los datos json en php.
@@ -23,6 +25,14 @@ class ModelTask extends Model
         return $data;
     }
 // declarar method incremente el id.. (o lo podem incrementar al crear la task, o incrementar x un metodo).
+    function newId()
+    {
+        $tasks = $this->allTask();
+        $lastInfo = end($tasks); //coger el ultimo registro del array.
+        $nextId = $lastInfo['id'];
+        $nextId++;
+        return $nextId;
+    }
 // declarar method crear task.
 // declarar method ver task.
 // declarar method editar task.
