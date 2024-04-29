@@ -10,5 +10,9 @@
  * '/calendar' => 'calendar#index'
  */
 $routes = array(
-	'/test' => 'test#index'
+	//chequear rutas seguin las vistas implementadas
+	'/create' => 'Application#createTask',
+	'/read' => 'Application#readTask',
+	'/update' => 'Application#updateTask',
+	'/delete' => 'Application#deleteTask'
 );
