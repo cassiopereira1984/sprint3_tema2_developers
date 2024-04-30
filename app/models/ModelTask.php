@@ -28,14 +28,18 @@ class ModelTask extends Model
 // declarar method editar task.
     function updateTask(int $id, array $updateTask) : void
     {
-        $allTask = $this->allTask();
-        foreach($allTask as $index => $task) {
-            
+        $allList = $this->allTask();            //crease la lista de tareas
+        foreach($allList as $i => $task) {      //recorre la lista generando un index por tarea
+            if($id === $task["id"]) {           //comproba si el id informado está en la lista
+                $allList[$i] = $updateTask;     //actualiza la actualizacion de updateTask en la posicion del inde ne la lista
+            }
         }
+
         $tasks = array_values($allList); //Reorganiza los elementos del array
         $jsonFile = json_encode($tasks, JSON_PRETTY_PRINT); //decodifica el archivo php a json
         file_put_contents(ROOT_PATH . '/app/models/db.json' , $jsonFile); //guarda los cambios en la bd.
     }
+    
 // declarar method eliminar task.
 }
 ?>
