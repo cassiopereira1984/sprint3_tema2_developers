@@ -26,7 +26,7 @@ class ApplicationController extends Controller
 
         $this->modelTask->allTask();
         $tasks = $this->modelTask->allTask();
-        $this->view->allTask = $tasks;
+        $this->view->data = $tasks;
 
     }
     public function createTaskAction()
@@ -36,7 +36,7 @@ class ApplicationController extends Controller
             //recoger los datos introducidos en formulario de nueva tarea
             $description = $this->$_POST("description");
             $status = $this->$_POST("status");
-            $dateIni = date_create()->format('Y-m-d');
+            $dateIni = date_create($_POST)->format('Y-m-d');
             $dateEnd = date_create($_POST["date_end"])->format('Y-m-d');
             $user = $this->$_POST("user");// Tener en cuenta cambiar "()" por "[]"
 
@@ -52,7 +52,7 @@ class ApplicationController extends Controller
 
 
             $this->modelTask->createTask($newTask);
-            header("Location: " . $this->_baseUrl() . "/index");  /*devuelve al usuario a la pagina principal, 
+            return header("Location: index.phtml"); /*devuelve al usuario a la pagina principal, 
                                                                     si queremos crear un mensaje de confirmacion 
                                                                     o algo asi, habría que cambiar el "/index" a 
                                                                     la ruta de ese script*/
