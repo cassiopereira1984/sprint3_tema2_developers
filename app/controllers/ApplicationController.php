@@ -15,11 +15,11 @@ class ApplicationController extends Controller
 {
 	function updateTaskAcciton() 
     {
-        $task = new ModelTask;
+        $modelTask = new ModelTask;
         $updateTask = [];
         $id = $_GET["id"]; 
-        $oneTask = $task->readTask($id);
-        $this->view->oneTask=$oneTask; //chequear esta linea;
+        $oneTask = $modelTask->readTask($id);
+        $this->view->  oneTask    =$oneTask; //chequear esta linea;
         
         if(!empty($_Post)) {
             $updateTask =
@@ -31,7 +31,7 @@ class ApplicationController extends Controller
                 'date_end' => $_POST['dateEnd'],
                 'user' => $_POST['user']
             ];
-            $task->updateTask($updateTask);
+            $modelTask->updateTask($id, $updateTask); //me pide 2 argumentos??
         }
         return header ('location:./'); //definir ruta de retorno
         exit();
