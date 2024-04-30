@@ -11,5 +11,6 @@
  */
 $routes = array(
 	'/'=>'Application#index',
+	'/createTask' => 'Application#createTask',
 	'/test' => 'test#index'
 );
