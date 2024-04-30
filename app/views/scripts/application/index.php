@@ -7,9 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.tailwindcss.com"></script>    
     </head>
-    <?php  $tasks = $this->data; ?>
     <body>
-        
+        <?php 
+        $texto = "hola"; 
+        var_dump($texto);
+        ?>
     <h2 class="flex justify-center items-center mb-4 mt-8 text-3xl font-bold leading-none tracking-tight text-blue-800 md:text-5xl lg:text-6xl dark:text-white">Task Manager</h2>
 
     <table class="min-w-full divide-y divide-gray-200">

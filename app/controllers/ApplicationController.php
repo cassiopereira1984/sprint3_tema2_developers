@@ -25,7 +25,7 @@ class ApplicationController extends Controller
     {
 
         $this->modelTask->allTask();
-        $tasks = $this->modelTask->allTask();
+        $tasks = "hola";
         $this->view->data = $tasks;
 
     }
