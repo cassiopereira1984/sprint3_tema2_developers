@@ -8,10 +8,7 @@
         <script src="https://cdn.tailwindcss.com"></script>    
     </head>
     <body>
-        <?php 
-        $texto = "hola"; 
-        var_dump($texto);
-        ?>
+    
     <h2 class="flex justify-center items-center mb-4 mt-8 text-3xl font-bold leading-none tracking-tight text-blue-800 md:text-5xl lg:text-6xl dark:text-white">Task Manager</h2>
 
     <table class="min-w-full divide-y divide-gray-200">
@@ -37,29 +34,29 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            <?php if ($tasks !== null): ?>
-                <?php foreach ($tasks as $task): ?>
+            <?php if ($this -> allTasks !== null): ?>
+                <?php foreach ($this -> allTasks as $task): ?>
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <?php echo htmlspecialchars($task['id']); ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <?php echo $task['description']; ?>
+                            <?php echo htmlspecialchars($task['description']); ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span
-                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <?php echo ($task['status'] === 'finalized') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'; ?>">
-                                <?php echo $task['status']; ?>
+                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                                <?php echo htmlspecialchars($task['status']); ?>
                             </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <?php echo $task['date_ini']; ?>
+                            <?php echo htmlspecialchars($task['date_ini']); ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <?php echo $task['date_end']; ?>
+                            <?php echo htmlspecialchars($task['date_end']); ?>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <?php echo $task['user']; ?>
+                            <?php echo htmlspecialchars($task['user']); ?>
                         </td>
                         <td class=" py-4 whitespace-nowrap">
                             

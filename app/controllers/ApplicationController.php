@@ -24,9 +24,8 @@ class ApplicationController extends Controller
     public function indexAction()
     {
 
-        $this->modelTask->allTask();
-        $tasks = "hola";
-        $this->view->data = $tasks;
+        $allTasks = $this->modelTask->allTask();
+        $this->view->allTasks = $allTasks;  
 
     }
     public function createTaskAction()
@@ -36,7 +35,7 @@ class ApplicationController extends Controller
             //recoger los datos introducidos en formulario de nueva tarea
             $description = $this->$_POST("description");
             $status = $this->$_POST("status");
-            $dateIni = date_create($_POST)->format('Y-m-d');
+           // $dateIni = date_create($_POST)->format('Y-m-d');
             $dateEnd = date_create($_POST["date_end"])->format('Y-m-d');
             $user = $this->$_POST("user");// Tener en cuenta cambiar "()" por "[]"
 
@@ -45,7 +44,7 @@ class ApplicationController extends Controller
                 'id' => $this->modelTask->newId(),//hay que crear el metodo getID en ModelTask.php
                 'description' => $description,
                 'status' => $status,
-                'date_ini' => $dateIni,
+                //'date_ini' => $dateIni,
                 'date_end' => $dateEnd,
                 'user' => $user
             ];
