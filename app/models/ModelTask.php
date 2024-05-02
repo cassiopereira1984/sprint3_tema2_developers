@@ -1,7 +1,7 @@
 <?php 
 
 // declarar class.
-class ModelTask extends Model
+class ModelTask
 {
 // declarar variables.
     protected $dbJson;
@@ -11,20 +11,16 @@ class ModelTask extends Model
 // declarar el construct.
     public function __contruct() 
     {
-        $this->dbJson = __DIR__ . "/db.json";
-        $this->tasks = [];
-        $this->id = $this->newID();
+       
     }
-
-   
 
 // declarar un array que converta los datos json en php.
     public function allTask() : array
     {   
-        $dataBase = file_get_contents($this->dbJson);
-
-        $this->tasks = json_decode($dataBase, true);
-        return $this->tasks;
+        $fileName = __DIR__ . "/db.json";
+        $data = file_get_contents($fileName);        
+        $tasks = json_decode($data, true);
+        return $tasks;
     
         
     }
@@ -40,7 +36,7 @@ class ModelTask extends Model
     public function createTask(array $newTask) //puedes recibir las info o implementarlas desde de el method.
     {
         
-        $this->allTask();
+        $this->allTask();//testear si es necesario llamar a este metodo
         $this->tasks[] = $newTask;
         $var1 = json_encode($this->tasks, JSON_PRETTY_PRINT);
         file_put_contents($this->dbJson, $var1);

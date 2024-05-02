@@ -35,7 +35,7 @@ class ApplicationController extends Controller
             //recoger los datos introducidos en formulario de nueva tarea
             $description = $this->$_POST("description");
             $status = $this->$_POST("status");
-           // $dateIni = date_create($_POST)->format('Y-m-d');
+            $dateIni = date_create($_POST["date_ini"])->format('Y-m-d');
             $dateEnd = date_create($_POST["date_end"])->format('Y-m-d');
             $user = $this->$_POST("user");// Tener en cuenta cambiar "()" por "[]"
 
@@ -44,14 +44,14 @@ class ApplicationController extends Controller
                 'id' => $this->modelTask->newId(),//hay que crear el metodo getID en ModelTask.php
                 'description' => $description,
                 'status' => $status,
-                //'date_ini' => $dateIni,
+                'date_ini' => $dateIni,
                 'date_end' => $dateEnd,
                 'user' => $user
             ];
 
 
             $this->modelTask->createTask($newTask);
-            return header("Location: index.phtml"); /*devuelve al usuario a la pagina principal, 
+            return header("Location: /index"); /*devuelve al usuario a la pagina principal, 
                                                                     si queremos crear un mensaje de confirmacion 
                                                                     o algo asi, habría que cambiar el "/index" a 
                                                                     la ruta de ese script*/
