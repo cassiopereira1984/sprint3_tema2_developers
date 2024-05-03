@@ -10,17 +10,17 @@
     
     <div class="max-w-md mx-auto bg-white rounded p-6">
         <h2 class="text-xl font-semibold mb-4">Crear Nueva Tarea</h2>
-        <form action="/controllers/ApplicationController.php" method="POST">
+        <form action="createTask" name="createTask" id="createTask" method="post">
             <!-- Descripción de la Tarea -->
             <div class="mb-4">
                 <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción de la Tarea <span class="text-red-500">*</span></label>
-                <input type="text" id="descripcion" name="descripcion" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none" required>
+                <input type="text" id="description" name="description" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none" required>
             </div>
             
             <!-- Estado de la Tarea -->
             <div class="mb-4">
-                <label for="estado" class="block text-sm font-medium text-gray-700">Estado de la Tarea</label>
-                <select id="estado" name="estado" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none">
+                <label for="status" class="block text-sm font-medium text-gray-700">Estado de la Tarea</label>
+                <select id="status" name="status" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none">
                     <option value="pendiente">Pendiente</option>
                     <option value="finalizada">Finalizada</option>
                 </select>
@@ -28,20 +28,20 @@
             
             <!-- Fecha de Inicialización -->
             <div class="mb-4">
-                <label for="fecha_inicio" class="block text-sm font-medium text-gray-700">Fecha de Inicialización <span class="text-red-500">*</span></label>
-                <input type="date" id="fecha_inicio" name="fecha_inicio" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none" required>
+                <label for="date_ini" class="block text-sm font-medium text-gray-700">Fecha de Inicialización <span class="text-red-500">*</span></label>
+                <input type="date" id="date_ini" name="date_ini" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none" required>
             </div>
             
             <!-- Fecha de Finalización -->
             <div class="mb-4">
-                <label for="fecha_finalizacion" class="block text-sm font-medium text-gray-700">Fecha de Finalización</label>
-                <input type="date" id="fecha_finalizacion" name="fecha_finalizacion" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none">
+                <label for="date_end" class="block text-sm font-medium text-gray-700">Fecha de Finalización</label>
+                <input type="date" id="date_end" name="date_end" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none">
             </div>
             
             <!-- Usuario -->
             <div class="mb-4">
-                <label for="usuario" class="block text-sm font-medium text-gray-700">Usuario <span class="text-red-500">*</span></label>
-                <input type="text" id="usuario" name="usuario" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none" required>
+                <label for="user" class="block text-sm font-medium text-gray-700">Usuario <span class="text-red-500">*</span></label>
+                <input type="text" id="user" name="user" class="mt-1 p-2 w-full border-gray-300 rounded-md focus:ring focus:ring-indigo-200 focus:outline-none" required>
             </div>
             
             <!-- Botón de Enviar -->

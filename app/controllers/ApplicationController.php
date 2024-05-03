@@ -30,32 +30,35 @@ class ApplicationController extends Controller
     }
     public function createTaskAction()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {/*$_SERVER['REQUEST_METHOD']: El método de solicitud HTTP utilizado 
-                                                    (por ejemplo, GET, POST, etc.).*/
-            //recoger los datos introducidos en formulario de nueva tarea
-            $description = $this->$_POST("description");
-            $status = $this->$_POST("status");
-            $dateIni = date_create($_POST["date_ini"])->format('Y-m-d');
-            $dateEnd = date_create($_POST["date_end"])->format('Y-m-d');
-            $user = $this->$_POST("user");// Tener en cuenta cambiar "()" por "[]"
-
-
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validar los datos recibidos del formulario
+            $description = $_POST['description'];
+            $status = $_POST['status'];
+            $date_ini = $_POST['date_ini'];
+            $date_end = $_POST['date_end'];
+            $user = $_POST['user'];
+    
+            // Crear una instancia del modelo de tarea
+            $taskModel = new ModelTask();
+    
+            // Crear un array con los datos de la nueva tarea
             $newTask = [
-                'id' => $this->modelTask->newId(),//hay que crear el metodo getID en ModelTask.php
                 'description' => $description,
                 'status' => $status,
-                'date_ini' => $dateIni,
-                'date_end' => $dateEnd,
+                'date_ini' => $date_ini,
+                'date_end' => $date_end,
                 'user' => $user
             ];
-
-
-            $this->modelTask->createTask($newTask);
-            return header("Location: /index"); /*devuelve al usuario a la pagina principal, 
-                                                                    si queremos crear un mensaje de confirmacion 
-                                                                    o algo asi, habría que cambiar el "/index" a 
-                                                                    la ruta de ese script*/
-            exit(); /* Esto asegura que no se ejecute ningún código adicional después de la redirección. */
+    
+            // Guardar la nueva tarea en el modelo
+            $taskModel->createTask($newTask);
+    
+            // Redirigir al usuario a la página de inicio
+            header("Location: ./"); 
+            exit();
+        }
+            
         }
 
 
