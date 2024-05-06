@@ -1,27 +1,37 @@
 <?php
 
-//llamar a la carpte model archivo.
-require_once(__DIR__ . "/../models/TaskModel.php");
 
-/**
- * Base controller for the application.
- * Add general things in this controller.
- * testestestesadasdasasdad
- */
+require_once(__DIR__ . "/../models/ModelTask.php");
 
- //crear a la class app control segun sale abajo y crear la function construct 
- //$this->model = new Model() para llamar a la function en el models 
-class ApplicationController extends Controller 
-{
+ class ApplicationController extends Controller 
+ {
+     
+     private $modelTask;
+ 
+     public function __construct(){
+ 
+         $this->modelTask = new ModelTask();
+     }
+ 
+     public function indexAction()
+     {
+ 
+         $allTasks = $this->modelTask->allTask();
+         $this->view->allTasks = $allTasks;  
+     }
 
 
-	public function deleteTaskAction(): void
-    {
-        $id = ((int)$this->_getParam('id'));
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) { //verifica si se ha enviado la solicitud
-            $this->modelTask->deleteTask($id); //elimina la task;
-            header("Location: " . $this->_baseUrl()); //por definir la ruta.
+     public function deleteTaskAction() {
+        // Verificar si se recibió una solicitud POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Obtener el ID de la tarea a eliminar desde el formulario
+            $taskId = $_POST['id']; // Asegúrate de sanitizar y validar la entrada aquí
+            
+            // Llamar al método para eliminar la tarea en el modelo
+            $this->modelTask->deleteTask($taskId);
+    
+            // Redireccionar a la página principal u otra página deseada
+            header("Location: /index");
             exit();
         }
     }

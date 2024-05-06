@@ -1,22 +1,26 @@
 [
-    {"id" : 1, 
-    "description" : "Limpiar", 
-    "status" : "initialized", 
-    "date_ini" : "2024/04/23", 
-    "date_end" : null, 
-    "user" : "Cassio"},
-    
-    {"id" : 2, 
-    "description" : "Estudiar", 
-    "status" : "finalized", 
-    "date_ini" : "2024/01/12", 
-    "date_end" : "2024/02/10", 
-    "user" : "Miguel"},
-    
-    {"id" : 3, 
-    "description" : "Comer", 
-    "status" : "in process", 
-    "date_ini" : "2024/03/03", 
-    "date_end" : null, 
-    "user" : "Rubén"}
-    ]
+    {
+        "id": 1,
+        "description": "Limpiar",
+        "status": "initialized",
+        "date_ini": "2024\/04\/23",
+        "date_end": null,
+        "user": "Cassio"
+    },
+    {
+        "id": 2,
+        "description": "Estudiar",
+        "status": "finalized",
+        "date_ini": "2024\/01\/12",
+        "date_end": "2024\/02\/10",
+        "user": "Miguel"
+    },
+    {
+        "id": 3,
+        "description": "Comer",
+        "status": "in process",
+        "date_ini": "2024\/03\/03",
+        "date_end": null,
+        "user": "Rub\u00e9n"
+    }
+]

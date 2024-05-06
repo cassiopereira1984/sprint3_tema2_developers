@@ -1,44 +1,59 @@
 <?php 
 
 // declarar class.
-class ModelTask extends Model
+class ModelTask
 {
 // declarar variables.
     protected $dbJson;
+    protected array $tasks;
+    protected int $id;
 
 // declarar el construct.
-    function __contruct() 
+    public function __construct() 
     {
-        $this->dbJson = __DIR__ . "/db.json";
+       
     }
 
 // declarar un array que converta los datos json en php.
-    function allTask() : array
-    {
-        $data = [];
-        $json = json_decode(file_get_contents($this->dbJson)); //convierte los datos json en php.
-        foreach ($json as $row) {  //convierte todos los datos a una array asociativa. 
-            $data[$row->id] = $row;
-        }
-        return $data;
+    public function allTask() : array
+    {   
+        $fileName = __DIR__ . "/db.json";
+        $data = file_get_contents($fileName);        
+        $tasks = json_decode($data, true);
+        return $tasks;
+    
+        
     }
-// declarar method incremente el id.. (o lo podem incrementar al crear la task, o incrementar x un metodo).
-// declarar method crear task.
-// declarar method ver task.
-// declarar method editar task.
-// declarar method eliminar task.
-    function deleteTask(int $id) 
+    public function newID(): int
     {
-        $allList = $this->allTask();
+        $this->allTask();
+        $lastTask = end($this->tasks);   //coger ultimo objeto que hay en el array
+        $newID = ($lastTask == null) ? 1 : ++$lastTask["id"];     // incrementar numero id
+        return $newID;
+    }
 
-        foreach ($allList as $index => $task) {
-            if ($id === $task["id"]) {
-                unset($allList[$index]); //se elimina la task utilizando el unset.
-            }
+// declarar method eliminar task.
+public function deleteTask($taskId) {
+    // Obtener el contenido del archivo JSON
+    $fileName = __DIR__ . "/db.json";
+    $json = file_get_contents($fileName);
+
+    // Decodificar el JSON en un array asociativo
+    $tasks = json_decode($json, true);
+
+    // Buscar la tarea por su ID y eliminarla del array
+    foreach ($tasks as $key => $task) {
+        if ($task['id'] == $taskId) {
+            unset($tasks[$key]);
+            break; // Salir del bucle una vez que se elimine la tarea
         }
-        $tasks = array_values($allList); //Reorganiza los elementos del array
-        $jsonFile = json_encode($tasks, JSON_PRETTY_PRINT); //decodifica el archivo php a json
-        file_put_contents(ROOT_PATH . '/app/models/db.json' , $jsonFile); //guarda los cambios en la bd.
     }
+
+    // Codificar el array nuevamente a JSON
+    $json = json_encode($tasks, JSON_PRETTY_PRINT);
+
+    // Escribir el JSON de vuelta al archivo
+    file_put_contents($fileName, $json);
+}
 }
 ?>
