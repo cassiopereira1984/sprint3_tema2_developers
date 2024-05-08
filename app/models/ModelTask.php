@@ -33,27 +33,19 @@ class ModelTask
     }
 
 // declarar method eliminar task.
-public function deleteTask($taskId) {
-    // Obtener el contenido del archivo JSON
-    $fileName = __DIR__ . "/db.json";
-    $json = file_get_contents($fileName);
+public function deleteTask(int $id): void
+    {
+        $allList = $this->allTask();
 
-    // Decodificar el JSON en un array asociativo
-    $tasks = json_decode($json, true);
-
-    // Buscar la tarea por su ID y eliminarla del array
-    foreach ($tasks as $key => $task) {
-        if ($task['id'] == $taskId) {
-            unset($tasks[$key]);
-            break; // Salir del bucle una vez que se elimine la tarea
+        foreach ($allList as $index => $task) {
+            if ($id === $task["id"]) {
+                unset($allList[$index]); //se elimina la task utilizando el unset.
+            }
         }
+
+        $tasks = array_values($allList); //Reorganiza los elementos del array
+        $jsonFile = json_encode($tasks, JSON_PRETTY_PRINT); //decodifica el archivo php a json
+        file_put_contents(ROOT_PATH . '/app/models/db.json' , $jsonFile); //guarda los cambios en la bd.
     }
-
-    // Codificar el array nuevamente a JSON
-    $json = json_encode($tasks, JSON_PRETTY_PRINT);
-
-    // Escribir el JSON de vuelta al archivo
-    file_put_contents($fileName, $json);
-}
 }
 ?>
