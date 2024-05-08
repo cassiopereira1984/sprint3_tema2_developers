@@ -1,0 +1,42 @@
+<?php
+    $editTask = $this->editTask;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Tarea</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
+    <h1 class="text-3xl font-bold mb-8">Editar Tarea</h1>
+    <form method="post" class="max-w-md w-full bg-white shadow-md rounded-md p-6">
+        <div class="mb-4">
+            <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre:</label>
+            <input type="text" id="nom" name="nom" value="<?php echo $editTask->nom; ?>" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+            <label for="estat" class="block text-gray-700 font-semibold mb-2">Estat:</label>
+            <select id="estat" name="estat" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+                <option <?php echo ($editTask->estat == "pendent") ? "selected" : ""; ?> value="pendent">Pendent</option>
+                <option <?php echo ($editTask->estat == "en execució") ? "selected" : ""; ?> value="en execució">En Execució</option>
+                <option <?php echo ($editTask->estat == "acabada") ? "selected" : ""; ?> value="acabada">Acabada</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="autor" class="block text-gray-700 font-semibold mb-2">Autor:</label>
+            <input type="text" id="autor" name="autor" value="<?php echo $editTask->autor; ?>" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+            <label for="hora_ini" class="block text-gray-700 font-semibold mb-2">Hora Inicio:</label>
+            <input type="datetime-local" id="hora_ini" name="hora_ini" value="<?php echo $editTask->hora_ini; ?>" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+            <label for="hora_fi" class="block text-gray-700 font-semibold mb-2">Hora Fin:</label>
+            <input type="datetime-local" id="hora_fi" name="hora_fi" value="<?php echo $editTask->hora_fi; ?>" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+        </div>
+        <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Guardar Cambios</button>
+    </form>
+</body>
+</html>
