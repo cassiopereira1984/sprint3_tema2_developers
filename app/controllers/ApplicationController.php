@@ -1,12 +1,7 @@
 <?php
-
-/**
- * Base controller for the application.
- * Add general things in this controller.
- */
-class ApplicationController extends Controller 
+class ApplicationController extends Controller
 {
-        
+
     public function indexAction(){
         $modelTask = new ModelTask;
         $task = $modelTask->allTask();
@@ -24,10 +19,7 @@ class ApplicationController extends Controller
             $date_ini = $_POST['date_ini'];
             $date_end = $_POST['date_end'];
             $user = $_POST['user'];
-    
-            // Crear una instancia del modelo de tarea
-            $taskModel = new ModelTask();
-    
+
             // Crear un array con los datos de la nueva tarea
             $newTask = [
                 'description' => $description,
@@ -36,52 +28,55 @@ class ApplicationController extends Controller
                 'date_end' => $date_end,
                 'user' => $user
             ];
-
             $modelTask->create($newTask);
-            header("Location: /"); 
+            header("Location: ./");
             exit();
         }
- 
+
     }
 
     public function readAction()
     {
         $modelTask = new ModelTask();
 
-        $id = $_GET["id"]; 
+        $id = $_GET["id"];
         $task = $modelTask->read($id);
         $this->view->task = $task;
     }
 
-    public function updateAction() 
+    public function updateAction()
     {
-        $task = new ModelTask;
-        $id = $_GET["id"]; 
-        $editTask =  $task -> allTask();
-        $this -> view -> editTask = $editTask;
+        $modelTask = new ModelTask;
 
-        if (!empty($_POST)) {
-            $newData [] = [
+        $id = $_GET['id'];
+        $task = $modelTask->read($id);
+        $this->view->task = $task;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $updateTask = [
                 'id' => $id,
-                'nom' => $_POST["nom"],
-                'estat' => $_POST["estat"],
-                'hora_ini' => $_POST["hora_ini"],
-                'hora_fi' => $_POST["hora_fi"],
-                'autor' => $_POST["autor"]];
-        $task -> updateTask($newData); 
-        return header("Location:./");
-            }
-    }
-
-    public function deleteAction(): void
-    {
-        $modelTask = new ModelTask();
-        $id = (int)$_GET['id'];
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) { //verifica si se ha enviado la solicitud
-            $modelTask->delete($id); //elimina la task;
-            header ("Location:./");
+                'description' => $_POST['description'],
+                'status' => $_POST['status'],
+                'date_ini' => $_POST['date_ini'],
+                'date_end' => $_POST['date_end'],
+                'user' => $_POST['user']
+            ];
+            $modelTask->update($updateTask);
+            header('Location: ./'); // Redirigir a la página principal
             exit();
         }
+    }
+
+    public function deleteAction(){
+        $task = new ModelTask;
+        $id = $_GET["id"];
+      
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) {
+            $task-> delete($id);
+            header ("Location:./");
+        }
+       
+        
+        
     }
 }

@@ -11,7 +11,7 @@
  */
 $routes = array(
 	'/' => 'application#index',
-	'/index' => 'appication#index',
+	'/index' => 'application#index',
 	'/create' => 'application#create',
 	'/delete' => 'application#delete',
 	'/update' => 'application#update',
