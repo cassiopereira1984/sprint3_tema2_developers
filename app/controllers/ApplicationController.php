@@ -21,13 +21,15 @@ require_once(__DIR__ . "/../models/ModelTask.php");
      }
 
 
-     public function deleteTaskAction(): void
+     public function deleteAction(): void
     {
         $modelTask = new ModelTask();
-        $id = (int)$_GET['id'];
+        $taskId = ((int) $this->_getParam('id'));
+        
+        //$id = (int)$_GET['id'];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) { //verifica si se ha enviado la solicitud
-            $modelTask->deleteTask($id); //elimina la task;
+            $modelTask->delete($taskId); //elimina la task;
             header ("Location:./");
             exit();
         }

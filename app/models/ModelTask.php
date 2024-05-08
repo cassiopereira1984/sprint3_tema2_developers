@@ -33,15 +33,14 @@ class ModelTask
     }
 
 // declarar method eliminar task.
-public function deleteTask(int $id): void
+public function delete(int $id): void
     {
         $allList = $this->allTask();
 
-        foreach ($allList as $index => $task) {
-            if ($id === $task["id"]) {
-                unset($allList[$index]); //se elimina la task utilizando el unset.
-            }
-        }
+        
+        unset($allList[$id]); //se elimina la task utilizando el unset.
+            
+        
 
         $tasks = array_values($allList); //Reorganiza los elementos del array
         $jsonFile = json_encode($tasks, JSON_PRETTY_PRINT); //decodifica el archivo php a json
