@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leer Tarea</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<?php
+$allTask = $this->task;
+//print_r($oneTask);
+?>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="max-w-md w-full p-6 bg-white rounded-md shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Tarea Detallada</h1>
+        <div class="mb-4">
+            <table class="table-auto w-full">
+                <tr>
+                    <th class="border px-4 py-2">ID</th>
+                    <td class="border px-4 py-2"><?php echo $allTask['id']; ?></td>
+                </tr>
+                <tr>
+                    <th class="border px-4 py-2">Descripción</th>
+                    <td class="border px-4 py-2"><?php echo $allTask['description']; ?></td>
+                </tr>
+                <tr>
+                    <th class="border px-4 py-2">Estado</th>
+                    <td class="border px-4 py-2"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800"><?php echo $allTask['status']; ?></span></td>
+                </tr>
+                <tr>
+                    <th class="border px-4 py-2">Hora de Inicio</th>
+                    <td class="border px-4 py-2"><?php echo htmlspecialchars($allTask['date_ini']); ?></td>
+                </tr>
+                <tr>
+                    <th class="border px-4 py-2">Hora de Finalización</th>
+                    <td class="border px-4 py-2"><?php echo htmlspecialchars($allTask['date_end']); ?></td>
+                </tr>
+                <tr>
+                    <th class="border px-4 py-2">Usuario</th>
+                    <td class="border px-4 py-2"><?php echo $allTask['user']; ?></td>
+                </tr>
+            </table>
+        </div>
+        <a href="./" class="block w-full py-2 px-4 bg-blue-500 text-white text-center rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Volver</a>
+    </div>
+</body>
+</html>

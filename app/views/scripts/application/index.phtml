@@ -1,53 +1,93 @@
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/index.css">
-    <title>Llista de Tasques</title>
-</head>
-<?php
-$allTask = $this->task;
-//print_r($listTasks);
-?>
 
-<body>
-    <h1>Llista de Tasques</h1>
-    <table>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Task List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.tailwindcss.com"></script>    
+    </head>
+    <?php
+    $allTask = $this->task;
+    //print_r($listTasks);
+    ?>
+    <body action= "/controllers/ApplicationController.php">
+    
+    <h2 class="flex justify-center items-center mb-4 mt-8 text-3xl font-bold leading-none tracking-tight text-blue-800 md:text-5xl lg:text-6xl dark:text-white">Task Manager</h2>
+
+    <table class="min-w-full divide-y divide-gray-200">
+        <div class="-mb-2 py-4 flex flex-wrap flex-grow justify-end w-full">
+            <div class="flex content-end p-8">
+                <a href="create"
+                    class="inline-block px-8 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-green-400 focus:outline-none focus:shadow-outline">
+                    Create new task
+                </a>
+            </div>
+        </div>
         <thead>
             <tr>
-                <th>id</th>
-                <th>description</th>
-                <th>status</th>
-                <th>date_ini</th>
-                <th>date_end</th>
-                <th>user</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Creation Date
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Date</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach($allTask as $task): ?>
-                <tr>
-                    <td><?php echo $task['id']; ?></td>
-                    <td><?php echo $task['description']; ?></td>
-                    <td><?php echo $task['status']; ?></td>
-                    <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($task['date_ini']); ?></td>
-                    <td class="px-6 py-4 whitespace-nowrap"><?php echo ($task['date_end']); ?></td>
-                    <td><?php echo $task['user']; ?></td>
-                    <td>
-                        <a href="read?id=<?php echo $task['id']; ?>"><img src="images/view.png" alt="Mostrar" style="width: 20px; height: 20px";></a>    
-                        <a href="update?id=<?php echo $task['id']; ?>"><img src="images/edit.png" alt="Editar" style="width: 20px; height: 20px;"></a>
-                        <a href="delete?id=<?php echo $task['id']; ?>"><img src="images/delete.png" alt="Borrar" style="width: 20px; height: 20px";></a>
+        <tbody  class="bg-white divide-y divide-gray-200">
+            <?php if ($this -> allTasks !== null): ?>
+                <?php foreach ($this -> allTasks as $task): ?>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <?php echo ($task['id']); ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <?php echo ($task['description']); ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span
+                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                                <?php echo ($task['status']); ?>
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <?php echo htmlspecialchars($task['date_ini']); ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <?php echo ($task['date_end']); ?>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <?php echo htmlspecialchars($task['user']); ?>
+                        </td>
+                        <td class=" py-4 whitespace-nowrap">
+                            
+                        <a href="read?id=<?php echo $task['id']; ?>" name="read" class="inline-block px-2 py-1 font-medium 
+                            text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue 
+                            active:bg-blue-600 transition duration-150 ease-in-out">Leer</a>
+                            
+                        <a href="update?id=<?php echo $task['id']; ?>" name="update" class="inline-block px-2 py-1 font-medium 
+                            text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue 
+                            active:bg-blue-600 transition duration-150 ease-in-out">Actualizar</a>
                         
+                        <a href="delete?id=<?php echo $task['id']; ?>"
+                            class="ml-2 px-2 py-1 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none 
+                            focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Borrar</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="7" class="px-6 py-4 whitespace-no-wrap text-center border-b border-gray-200">
+                        <p class="text-red-600">No tasks available</p>
                     </td>
                 </tr>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="5" style="text-align: center;">
-                    <a href="create"><img src="images/add.png" alt="Nova Tasca" style="width: 20px; height: 20px;"></a>
-                </td>
-            </tr>
+            <?php endif; ?>
         </tbody>
     </table>
-</body>
+
+    </body>
 </html>

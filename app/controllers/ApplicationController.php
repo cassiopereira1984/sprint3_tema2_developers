@@ -2,10 +2,16 @@
 class ApplicationController extends Controller
 {
 
+    private $modelTask;
+
+    public function __construct(){
+
+        $this->modelTask = new ModelTask();
+    }
+
     public function indexAction(){
-        $modelTask = new ModelTask;
-        $task = $modelTask->allTask();
-        $this->view->task = $task;
+        $allTasks = $this->modelTask->allTask();
+        $this->view->allTasks = $allTasks;  
     }
 
     public function createAction()
