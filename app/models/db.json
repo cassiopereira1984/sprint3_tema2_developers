@@ -1,0 +1,18 @@
+{
+    "1": {
+        "description": "no te dupliques",
+        "status": "pendiente",
+        "date_ini": "2024-05-09",
+        "date_end": "",
+        "user": "ronin",
+        "id": 1
+    },
+    "2": {
+        "description": "cocina",
+        "status": "finalizada",
+        "date_ini": "2024-05-10",
+        "date_end": "",
+        "user": "miguel",
+        "id": 2
+    }
+}

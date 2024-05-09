@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Tarea</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
+    <h1 class="text-3xl font-bold mb-8">Actualizar Tarea</h1>
+    <?php
+    // Aquí deberías obtener los datos de la tarea que se va a actualizar
+    $task =  $this->task; // Esto es un ejemplo, debes obtener los datos de tu base de datos
+    ?>
+
+    <form method="post" class="max-w-md w-full bg-white shadow-md rounded-md p-6">
+        <input type="hidden" name="id" value="<?php echo $task['id']; ?>" class="hidden"> <!-- Campo oculto para enviar el ID de la tarea -->
+
+        <div class="mb-4">
+            <label for="description" class="block text-gray-700 font-semibold mb-2">Descripción:</label>
+            <input type="text" id="description" name="description" value="<?php echo $task['description']; ?>" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+        </div>
+        
+        <div class="mb-4">
+            <label for="status" class="block text-gray-700 font-semibold mb-2">Estado:</label>
+            <select id="status" name="status" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+                <option value="initialized" <?php if ($task['status'] == 'initialized') echo 'selected'; ?>>Inicializado</option>
+                <option value="in process" <?php if ($task['status'] == 'in process') echo 'selected'; ?>>En proceso</option>
+                <option value="finalized" <?php if ($task['status'] == 'finalized') echo 'selected'; ?>>Finalizado</option>
+            </select>
+        </div>
+        
+        <div class="mb-4">
+            <label for="user" class="block text-gray-700 font-semibold mb-2">Usuario:</label>
+            <input type="text" id="user" name="user" value="<?php echo $task['user']; ?>" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+        </div>
+        
+        <div class="mb-4">
+            <label for="date_ini" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
+            <input type="datetime-local" id="date_ini" name="date_ini" value="<?php echo date('Y-m-d\TH:i', strtotime($task['date_ini'])); ?>" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+        </div>
+        
+        <div class="mb-4">
+            <label for="date_end" class="block text-gray-700 font-semibold mb-2">Fecha de Fin:</label>
+            <input type="datetime-local" id="date_end" name="date_end" value="<?php echo date('Y-m-d\TH:i', strtotime($task['date_end'])); ?>" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" required>
+        </div>
+        
+        <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Guardar Tarea</button>
+    </form>
+
+    <a href="./" class="text-blue-500 mt-4 hover:underline">Volver a la Lista</a>
+</body>
+</html>
+
